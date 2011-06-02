@@ -18,7 +18,9 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @category }
+      format.json  {render :json => @category}
     end
+    
   end
 
   # GET /categories/new

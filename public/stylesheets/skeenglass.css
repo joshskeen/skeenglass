@@ -1,0 +1,167 @@
+@CHARSET "UTF-8";
+@font-face {
+    font-family: 'StylusITCTTRegular';
+    src: url('/stylesheets/fonts/stylus/styli-webfont.eot');
+    src: url('/stylesheets/fonts/stylus/styli-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/stylesheets/fonts/stylus/styli-webfont.woff') format('woff'),
+         url('/stylesheets/fonts/stylus/styli-webfont.ttf') format('truetype'),
+         url('/stylesheets/fonts/stylus/styli-webfont.svg#StylusITCTTRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.divrow{
+	width:100%;
+	float:left;
+	border:1px solid green;
+}
+
+body{
+	background-color:#1d1d1f;
+	color:#606362;
+}
+
+a{
+color:#606362
+}
+
+a:hover, a.active{
+	color:#8ab29f;
+}
+
+#cart_status{
+	float:left;
+	width:100%;
+	height:34px;
+	margin-top:5px;
+	text-align:right;
+}
+#cart_status a{
+	color:white;
+}
+
+#cart_status .item_count{
+	padding-right:5px;
+}
+
+.cart_link{
+	float:right;
+}
+.cart_options{
+	padding-right:12px;
+	float:right;
+	padding-top:2px;
+}
+
+header{
+	font-family: 'StylusITCTTRegular';
+	font-size:30px;
+	color:white;
+	float:left;
+	width:100%;
+}
+header h1{
+	padding:0;
+	margin:0;
+}
+
+header nav a{
+	float:right;
+	margin-left:60px;
+	height:50px;
+	padding-top:10px;
+}
+header h1{
+	color:white;
+	font-size:60px;
+	text-shadow: 3px 3px 3px #000;
+	float:left;
+}
+
+header a{
+	color:white;
+	text-decoration:none;
+}
+
+
+a.active{
+	text-decoration:underline !important;
+}
+
+
+#container{
+	width:975px;
+	margin:0 auto;
+}
+
+#pager{
+	float:left;
+	width:100%;
+	height:24px;
+	margin-top:10px;
+}
+
+
+#pager a{
+	text-decoration:none;
+padding:5px;
+margin:2px;
+background-color:#161618;
+}
+
+#scrollbar_area{
+	float:left;
+	width:100%;
+	height:24px;
+	margin-top:10px;
+	background-image:url('/images/scrollarea_bg.gif');
+	background-repeat:repeat-x;
+	background-color:none;
+}
+#scrollbar_area .inner{
+	float:left;
+	width:100%;
+	height:24px;
+	background-image:url('/images/scrollarea_inner_bg.gif');
+	background-repeat:no-repeat;
+	background-position:right;
+}
+
+#products_grid_container{
+	float:left;
+	width:100%;
+	margin-top:24px;
+}
+
+
+.product img{
+	cursor:pointer;
+}
+.product .product_images{
+display:none;
+}
+
+.bead{
+	height:165px;
+	float:left;
+	margin-right:46px;
+	margin-bottom:20px;
+	
+}
+
+.bead .controls{
+	position:absolute;
+	margin-top:145px;
+	width:145px;
+	cursor:default;
+}
+
+.controls .price{
+	float:right;
+}
+.controls .photos{
+	float:right;
+	margin-right:10px;
+	margin-top:2px;
+	cursor:pointer;
+}

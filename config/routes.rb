@@ -1,6 +1,7 @@
 Site::Application.routes.draw do
   #resources :categories
 
+
   resources :product_images
 
   resources :products do
@@ -10,7 +11,8 @@ Site::Application.routes.draw do
   resources :categories do
     resources :products
   end
-  
+
+  root :controller => 'pages', :action => 'index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,11 @@
+<div class='product ${Type}' id="product_${Id}">
+	<div class="controls">
+		<a href="#" class="add_to_cart_button">add to cart</a>
+		<div class="price">${Price}$</div>
+		<div class="photos"><img src="/images/camera_off.gif" /></div>
+	</div>
+	<img src="${Thumb}" class="product_thumb" />
+	<div class="product_images">
+		{{tmpl(Images) "productImagesTemplate"}}
+	</div>
+</div>
