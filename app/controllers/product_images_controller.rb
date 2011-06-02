@@ -24,8 +24,12 @@ class ProductImagesController < ApplicationController
   # GET /product_images/new
   # GET /product_images/new.xml
   def new
-    @product_image = ProductImage.new
-
+    logger.debug("hello from product_images new")
+    logger.debug(params)
+    @product = Product.find(params[:product_id])
+    
+    @product_image = @product.product_images.build
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product_image }
@@ -40,8 +44,10 @@ class ProductImagesController < ApplicationController
   # POST /product_images
   # POST /product_images.xml
   def create
-    @product_image = ProductImage.new(params[:product_image])
-
+    #@product_image = ProductImage.new(params[:product_image])
+    @product = Product.find(params[:product_id])
+    @product_image = @product.product_images.build(params[:product_image])
+    
     respond_to do |format|
       if @product_image.save
         format.html { redirect_to(@product_image, :notice => 'Product image was successfully created.') }

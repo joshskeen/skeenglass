@@ -19,5 +19,7 @@
   <%= image_tag @product.thumb.url %>
 </p>
 
+<%= link_to "New Product Image", new_product_product_image_path(@product) %>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

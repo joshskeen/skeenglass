@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+<% for category in Category.find(:all) %>
+  <%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+  <%= label_tag "product[category_ids][]", category.name, :for => "video[category_id][]" %><br />
+<% end %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -23,6 +28,8 @@
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+  current thumb:
+  <%= image_tag(@product.thumb.url) %>
  <div class="field">
     <%= f.label :thumb %><br />
     <%= f.file_field :thumb %>

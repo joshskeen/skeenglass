@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.xml
   def show
+    
     @product = Product.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +25,16 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
+   @title = "New product"
+   #puts "category id: #{params[:category_id].numeric}"
     @product = Product.new
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+        @title =  @category.name + " > New product"
+      @product.categories.push(@category)
+    end
+    
+    
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category Name:</b>
+  <%= @category.name %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+
+<%= link_to "Add Product to #{@category.name}", new_category_product_path(@category) %><br />
+
+<div>
+  <h2>Products</h2>
+<% @category.products.each do |product|  %>
+<%=  image_tag product.thumb.url %>
+<%end %>
+</div>
+
