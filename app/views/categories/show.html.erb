@@ -12,8 +12,6 @@
 
 <div>
   <h2>Products</h2>
-<% @category.products.each do |product|  %>
-<%=  image_tag product.thumb.url %>
-<%end %>
+  <%= render 'products/product_table' %>
 </div>
 

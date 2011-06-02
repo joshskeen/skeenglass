@@ -50,7 +50,9 @@ class ProductImagesController < ApplicationController
     
     respond_to do |format|
       if @product_image.save
-        format.html { redirect_to(@product_image, :notice => 'Product image was successfully created.') }
+        
+        format.html { redirect_to(@product_image.product, :notice => 'Product image was successfully created.') }
+        
         format.xml  { render :xml => @product_image, :status => :created, :location => @product_image }
       else
         format.html { render :action => "new" }
@@ -79,10 +81,13 @@ class ProductImagesController < ApplicationController
   # DELETE /product_images/1.xml
   def destroy
     @product_image = ProductImage.find(params[:id])
+    @product = @product_image.product
     @product_image.destroy
 
     respond_to do |format|
-      format.html { redirect_to(product_images_url) }
+      format.html { 
+            redirect_to(@product, :notice => 'Product image deleted.') 
+        }
       format.xml  { head :ok }
     end
   end

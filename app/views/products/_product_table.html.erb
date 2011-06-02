@@ -1,0 +1,35 @@
+<table>
+  <tr>
+    <th>Thumb</th>
+    <th>Name</th>
+    <th>In cart</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= image_tag product.thumb.url('small')%></td>
+    <td><%= product.name %></td>
+    <td><%= product.in_cart %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to 'Show', product %>   </td>
+    <td>
+    <% if @category %>
+    <%= link_to 'Edit', edit_category_product_path(@category, product) %>
+    <%else%>
+    <%= link_to 'Edit', edit_product_path(product) %>
+    <%  end %>
+    </td>
+    <td>
+    <% if @category %>
+      <%= link_to  "Destroy", category_product_path(@category, product), :method => :delete, :confirm => 'Are you sure?'%>
+    <% else %> 
+      <%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %>
+    <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -29,13 +29,11 @@ class ProductsController < ApplicationController
    #puts "category id: #{params[:category_id].numeric}"
     @product = Product.new
     if params[:category_id]
-      @category = Category.find(params[:category_id])
+        @category = Category.find(params[:category_id])
         @title =  @category.name + " > New product"
       @product.categories.push(@category)
     end
-    
-    
-
+    @product_form_url = @category ? category_products_path(@category) : products_path(@product)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @product }
@@ -45,6 +43,10 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @product = Product.find(params[:id])
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+    end
+    @product_form_url = @category ? category_product_path(@category, @product) : product_path(@product)
   end
 
   # POST /products
@@ -54,7 +56,16 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
+        if(params[:category_id])
+          @category = Category.find(params[:category_id])
+        end
+        format.html { 
+          if @category
+            redirect_to category_path(@category, :notice => 'Product was successfully added to ' + @category.name + '.')
+          else
+            redirect_to product_path(@product, :notice => 'Product was successfully created.')
+          end
+        }  
         format.xml  { render :xml => @product, :status => :created, :location => @product }
       else
         format.html { render :action => "new" }
@@ -67,10 +78,16 @@ class ProductsController < ApplicationController
   # PUT /products/1.xml
   def update
     @product = Product.find(params[:id])
-
     respond_to do |format|
       if @product.update_attributes(params[:product])
-        format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }
+        if params[:category_id]
+          @category = Category.find(params[:category_id])
+          format.html { redirect_to(@category, :notice => 'Product was successfully updated.') }
+        else
+          format.html { redirect_to(@product, :notice => 'Product was successfully updated.') }            
+        end
+        
+        
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

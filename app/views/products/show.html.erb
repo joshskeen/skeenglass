@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
+
 
 <p>
   <b>Name:</b>
@@ -18,8 +21,13 @@
   <b>Thumb:</b>
   <%= image_tag @product.thumb.url %>
 </p>
-
+<h2>Product Images</h2>
 <%= link_to "New Product Image", new_product_product_image_path(@product) %>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div>
+<% @product.product_images.each do |i| %>
+  <div style="float:left;padding:5px;">
+   <%=  link_to image_tag(i.image.url(:small)), i.image.url %>
+   <%= link_to  "Delete Image", product_product_image_path(@product, i), :method => :delete, :confirm => 'Are you sure?'%>
+  </div>
+<% end %>
+</div>
