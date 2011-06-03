@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601220735) do
+ActiveRecord::Schema.define(:version => 20110603024121) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110601220735) do
     t.datetime "thumb_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "sold",               :default => false
   end
 
 end

@@ -11,7 +11,10 @@ Site::Application.routes.draw do
   resources :categories do
     resources :products
   end
+  
 
+  #match 'beads', :to => 'categories#destroy', :as => "beads"
+  
   root :controller => 'pages', :action => 'index'
 
   # The priority is based upon order of creation:

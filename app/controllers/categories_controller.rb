@@ -20,8 +20,9 @@ class CategoriesController < ApplicationController
       format.xml  { render :xml => @category }
       format.json  {render :json => @category}
     end
-    
   end
+  
+ 
 
   # GET /categories/new
   # GET /categories/new.xml

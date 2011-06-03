@@ -4,7 +4,8 @@ class ProductImage < ActiveRecord::Base
   def as_json(options={})
   {
     :title => self.title,
-    :image_path => self.image.url
+    :image_path => self.image.url,
+    :product_id => self.product_id,
   }
   end
 end

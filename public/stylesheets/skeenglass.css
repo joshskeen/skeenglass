@@ -141,7 +141,7 @@ background-color:#161618;
 display:none;
 }
 
-.bead{
+.beads{
 	height:165px;
 	float:left;
 	margin-right:46px;
@@ -149,7 +149,7 @@ display:none;
 	
 }
 
-.bead .controls{
+.beads .controls{
 	position:absolute;
 	margin-top:145px;
 	width:145px;

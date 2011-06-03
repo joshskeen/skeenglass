@@ -3,6 +3,7 @@ class AddTitleToProductImage < ActiveRecord::Migration
     change_table :product_images do |t|
       remove_column(:product_images, :string)
       add_column(:product_images, :title, :string)
+      
     end
   end
 

@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
 
   def as_json(options={})
   { :name => self.name,
-    :products => self.products
+    :products => self.products.where(:in_cart => false, :sold => false)
   }
   end
 

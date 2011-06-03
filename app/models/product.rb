@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   { :name => self.name,
     :id => self.id,
     :thumb => self.thumb.url,
+    :price => self.price,
     :product_images => self.product_images
   }
   end
