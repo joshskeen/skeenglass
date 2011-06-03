@@ -18,14 +18,17 @@
   <%= stylesheet_link_tag('colorbox', 
                           'blueprint/screen', 
                           'dark-hive/jquery-ui-1.8.13.custom', 
-                          'skeenglass.css') %>
+                          'skeenglass',
+                          'jquery.notifyBar'                      
+                          ) %>
   <%= javascript_include_tag('libs/jquery-1.6.1.min', 
                              'libs/jquery-ui-1.8.13.custom.min', 
                              'libs/jquery.colorbox', 
                              'libs/jquery.tmpl.min',
                              'libs/sammy/lib/min/sammy-0.6.3.min',
                              'libs/sammy/lib/min/plugins/sammy.storage-latest.min',
-                             'skeenglass'
+                             'skeenglass', 
+                             'libs/jquery.notifyBar'
                             )%>
   <%= csrf_meta_tag %>
 

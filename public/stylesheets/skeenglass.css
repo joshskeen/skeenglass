@@ -118,6 +118,7 @@ background-color:#161618;
 	background-repeat:repeat-x;
 	background-color:none;
 }
+
 #scrollbar_area .inner{
 	float:left;
 	width:100%;
@@ -146,7 +147,7 @@ display:none;
 	float:left;
 	margin-right:46px;
 	margin-bottom:20px;
-	
+        width:145px;
 }
 
 .beads .controls{

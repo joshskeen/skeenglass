@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603024121) do
+ActiveRecord::Schema.define(:version => 20110603152837) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110603024121) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.boolean  "in_cart"
+    t.boolean  "in_cart",            :default => false
     t.integer  "price"
     t.string   "thumb_file_name"
     t.string   "thumb_content_type"

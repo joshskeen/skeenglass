@@ -1,14 +1,15 @@
 <div id="container">
+  
   <div id="cart_status">
-    <a href="#" class="cart_link"><img src="/images/cart.gif" /></a>
+    <a href="#/cart" class="cart_link"><img src="/images/cart.gif" /></a>
     <div class="cart_options">		
-      <span class='item_count'>1 item 24$  |</span>
-      <a href="#">checkout &raquo;</a>
+      <span class='item_count'><span class="number_items"></span> <span class="total_price"></span>  |</span>
+      <a href="#/cart" class="checkout_link" style="display:none;">view cart & checkout &raquo;</a>
     </div>
   </div>
+  
  <%= render "shared/header" %>
   <div id="pager">
-  page: <a href="#" class='active'>1</a> <a href="#">2</a> <a href="#">3</a>
   </div>
   <div id="scrollbar_area">
     <div class="inner">

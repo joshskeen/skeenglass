@@ -1,6 +1,9 @@
 Site::Application.routes.draw do
-  #resources :categories
-
+  #resources :categories  
+  match '/products/add_to_cart/:id' => "products#add_to_cart"
+  match '/products/cart_items/:ids' => "products#cart_items"
+  match '/about' => "pages#about"
+  #match "/articles(/:id)" => "articles#index"
 
   resources :product_images
 

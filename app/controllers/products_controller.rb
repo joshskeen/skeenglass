@@ -11,16 +11,45 @@ class ProductsController < ApplicationController
         
         render :json => @products 
         
-        }
+      }
+    end
+  end
+  
+  def cart_items
+    if request.xhr?
+    @ids = params[:ids].split(',')
+    @products = Product.find(@ids)
+    render :json => @products 
+    else
+      head :bad_request
     end
   end
 
+  def add_to_cart
+    if request.xhr?
+      @product = Product.find(params[:id])
+      if @product.in_cart == true
+        render :json => {:status => 'fail', :message => 'item is already in someone elses cart!'}.to_json
+      else
+        @product.in_cart = true;
+        @product.save
+        if @product.save
+          render :json => {:status => 'success', :message => 'item added to cart!'}.to_json
+        else 
+          render :json => @product.errors, :status => :unprocessable_entity
+        end
+      end
+    else
+      head :bad_request
+    end
+  end
+  
+  
   # GET /products/1
   # GET /products/1.xml
   def show
     
     @product = Product.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product }
@@ -30,12 +59,12 @@ class ProductsController < ApplicationController
   # GET /products/new
   # GET /products/new.xml
   def new
-   @title = "New product"
-   #puts "category id: #{params[:category_id].numeric}"
+    @title = "New product"
+    #puts "category id: #{params[:category_id].numeric}"
     @product = Product.new
     if params[:category_id]
-        @category = Category.find(params[:category_id])
-        @title =  @category.name + " > New product"
+      @category = Category.find(params[:category_id])
+      @title =  @category.name + " > New product"
       @product.categories.push(@category)
     end
     @product_form_url = @category ? category_products_path(@category) : products_path(@product)
