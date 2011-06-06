@@ -1,0 +1,16 @@
+<tr>
+    <td>
+        <a href="#/remove/${id}" class="remove_btn" >Remove</a>
+    </td>
+    <td>
+        <img src="${thumb}" class="product_${id} product_thumb_checkout" style="width:40px;cursor:pointer;"/>
+    </td>
+    <td style="display:none;" class="product_images">
+        {{tmpl(product_images) "productImagesTemplate"}}
+        <a href="${thumb}" title="${name}" rel="product_${id}"></a>
+    </td>
+    <td class="productPrice">
+        ${price}$
+    </td>
+    
+</tr>
