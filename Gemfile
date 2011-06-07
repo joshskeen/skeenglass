@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.5'
 gem "paperclip", "~> 2.3"
 
+gem "google4r-checkout", "1.1.beta5"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

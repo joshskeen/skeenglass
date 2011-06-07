@@ -2,6 +2,7 @@ Site::Application.routes.draw do
   #resources :categories  
   match '/products/add_to_cart/:id' => "products#add_to_cart"
   match '/products/cart_items/:ids' => "products#cart_items"
+  match '/products/checkout/:ids' => "products#checkout"
   match '/about' => "pages#about"
   #match "/articles(/:id)" => "articles#index"
 

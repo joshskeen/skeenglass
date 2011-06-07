@@ -43,18 +43,24 @@ $(function() {
            $("#pager").hide();
            checkout();
         });
-    
+        
+        this.get('#/process_checkout', function(context){
+            var cart_item_ids = getCartItems().join(',');
+            context.redirect('/products/checkout/'+cart_item_ids);
+        });
+        
+        
         this.get('#/remove/:product_id', function(context){
            var product_id = this.params['product_id'];
-           //alert(product_id);
            var cart_items = getCartItems();
            var idx = cart_items.indexOf(product_id);
            if(idx != -1 && cart_items.length > 1){
              cart_items.splice(idx, 1);
              store.set('cart_items', cart_items.join(','));
            }else if(cart_items.length == 1 && (cart_items[0] == product_id || cart_items[0] == product_id)){
-               store.set('cart_items', '');
-            //   store.clearAll();
+            //   store.set('cart_items', '');
+               //store.clearAll();
+               store.clear('cart_items');
            } 
             $.notifyBar({
                       cls: "success",

@@ -32,6 +32,8 @@ GEM
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    google4r-checkout (1.1.beta5)
+      money (>= 2.3.0)
     i18n (0.5.0)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -39,6 +41,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    money (3.6.2)
+      i18n (~> 0.4)
     paperclip (2.3.8)
       activerecord
       activesupport
@@ -73,6 +77,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  google4r-checkout (= 1.1.beta5)
   paperclip (~> 2.3)
   rails (= 3.0.5)
   sqlite3

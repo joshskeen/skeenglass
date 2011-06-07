@@ -1,3 +1,4 @@
+require 'google4r/checkout'
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
@@ -7,10 +8,8 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @products }
-      format.json  { 
-        
+      format.json  {
         render :json => @products 
-        
       }
     end
   end
@@ -107,6 +106,43 @@ class ProductsController < ApplicationController
       end
     end
   end
+  
+  
+  def checkout
+    @products = Product.find(params[:ids].split(','))
+        configuration = { :merchant_id => '119277627551780', :merchant_key => '4Jwx3ZkSmI_h_rpqePpQYQ', :use_sandbox => true }
+         @frontend = Google4R::Checkout::Frontend.new(configuration)
+         checkout_command = @frontend.create_checkout_command
+         @products.each do |product|
+           checkout_command.shopping_cart.create_item do|item|
+             item.id = product.id
+             item.name = product.name
+             result = []
+              product.categories.each do | cat |
+                result << cat.name
+              end
+             item.description = result.join(',')
+             item.unit_price = Money.new(product.price*100, "USD")
+             item.quantity = 1
+           end  
+         end
+      checkout_command.create_shipping_method(Google4R::Checkout::FlatRateShipping) do |shipping_method|
+        shipping_method.name = "UPS Standard 3 Day"
+        shipping_method.price = Money.new(500, "USD")
+      end
+      
+    response = checkout_command.send_to_google_checkout
+    logger.debug(response)
+    redirect_to response.redirect_url
+    
+        
+ #        checkout_command.shopping_cart.create_item do |item in products|
+##           
+ #        end
+  end
+  
+  
+  
 
   # PUT /products/1
   # PUT /products/1.xml
