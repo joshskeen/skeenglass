@@ -11,7 +11,11 @@ var current_category;
 var current_page;
 var current_data;
 
+
 $(function() {
+    
+    
+    
     $("#slider").draggable({ containment: "parent", axis: 'x'});
     $('.photos').live('mouseover', function(){$(this).find('img').attr('src', '/images/camera_over.gif');});
     $('.photos').live('mouseout', function(){$(this).find('img').attr('src', '/images/camera_off.gif');});
@@ -42,15 +46,15 @@ $(function() {
     
         this.get('#/remove/:product_id', function(context){
            var product_id = this.params['product_id'];
-           
+           //alert(product_id);
            var cart_items = getCartItems();
            var idx = cart_items.indexOf(product_id);
            if(idx != -1 && cart_items.length > 1){
              cart_items.splice(idx, 1);
              store.set('cart_items', cart_items.join(','));
-           }else if(cart_items.length == 1 && cart_items[0] == product_id){
-               console.log('clear all');
-               store.clearAll();
+           }else if(cart_items.length == 1 && (cart_items[0] == product_id || cart_items[0] == product_id)){
+               store.set('cart_items', '');
+            //   store.clearAll();
            } 
             $.notifyBar({
                       cls: "success",
@@ -69,7 +73,7 @@ $(function() {
             $.ajax({
                 url: '/products/add_to_cart/' + product_id,
                 success: function(response){
-                    console.log(response);
+                    //console.log(response);
                     $.colorbox.close();
                     storeCartItem(product_id);
                     getCartItemsTotal();
@@ -87,7 +91,7 @@ $(function() {
     
         this.get('#/:category_name/:page', function(context){
             //$("#scrollbar_area .inner").show();
-            store = new Sammy.Store({name: 'skeenglass_cart', type: 'cookie'});
+            store = new Sammy.Store.Cookie({name: 'skeenglass_cart', type: 'cookie'});
             $("#products_grid_container").empty();
             displayLoader();
             var category_name = this.params['category_name'];
@@ -137,7 +141,7 @@ function storeCartItem(product_id){
 }
 
 function getCartItems(){
-    store = new Sammy.Store({name: 'skeenglass_cart', type: 'cookie'});
+    store = new Sammy.Store.Cookie({name: 'skeenglass_cart', type: 'cookie'});
     var cart_items = store.get('cart_items');
     if(cart_items == null){
         items_in_cart = new Array();

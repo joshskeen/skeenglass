@@ -24,18 +24,22 @@
   <%= javascript_include_tag('libs/jquery-1.6.1.min', 
                              'libs/jquery-ui-1.8.13.custom.min', 
                              'libs/jquery.colorbox', 
+                             'libs/modernizr-1.6.min', 
                              'libs/jquery.tmpl.min',
                              'libs/sammy/lib/min/sammy-0.6.3.min',
                              'libs/sammy/lib/min/plugins/sammy.storage-latest.min',
-                             'skeenglass', 
-                             'libs/jquery.notifyBar'
+                             'json2',                          
+                             'libs/utils',
+                             'libs/jquery.notifyBar',
+                             'skeenglass'
                             )%>
   <%= csrf_meta_tag %>
-
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
 <%= yield %>
-<!--[if lt IE 7 ]><script src="/js/libs/dd_belatedpng.js"></script><script>DD_belatedPNG.fix("img, .png_bg");</script><![endif]-->
 <script>var _gaq=[["_setAccount","UA-7060237-5"],["_trackPageview"]];(function(e,a){var c=e.createElement(a),b=e.getElementsByTagName(a)[0];c.async=true;c.src=("https:"==location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";b.parentNode.insertBefore(c,b)})(document,"script");</script>
 </body>
 </html>
