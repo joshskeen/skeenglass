@@ -1,6 +1,7 @@
 class ProductImagesController < ApplicationController
   # GET /product_images
   # GET /product_images.xml
+  before_filter :authenticate_user!, :except => [:show]
   def index
     @product_images = ProductImage.all
 

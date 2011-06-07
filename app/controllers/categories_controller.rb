@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
+  before_filter :authenticate_user!, :except => [:show]
+  
+  
   def index
     @categories = Category.all
 
@@ -13,6 +16,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
+    if !request.xhr?
+      authenticate_user!
+    end
     @category = Category.find(params[:id])
     @products = @category.products
     respond_to do |format|

@@ -1,4 +1,7 @@
 Site::Application.routes.draw do
+
+  devise_for :users
+
   #resources :categories  
   match '/products/add_to_cart/:id' => "products#add_to_cart"
   match '/products/cart_items/:ids' => "products#cart_items"
@@ -19,7 +22,7 @@ Site::Application.routes.draw do
 
   #match 'beads', :to => 'categories#destroy', :as => "beads"
   
-  root :controller => 'pages', :action => 'index'
+  root :to => "pages#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

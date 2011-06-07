@@ -13,21 +13,20 @@ var current_data;
 
 
 $(function() {
-    
-    
-    
     $("#slider").draggable({ containment: "parent", axis: 'x'});
     $('.photos').live('mouseover', function(){$(this).find('img').attr('src', '/images/camera_over.gif');});
     $('.photos').live('mouseout', function(){$(this).find('img').attr('src', '/images/camera_off.gif');});
     $('.photos').live('click', function(){
         $(this).parent().parent().find(".product_images a").colorbox({open: true });
         var product_id = $(this).parent().parent().attr('id').replace('product_', '');
-        $('<a href="/#/add_to_cart/'+product_id+'" id="add_to_cart" class="'+product_id+'" style="position:absolute; top:0;right:0px;cursor:pointer; background:#8cb3a0; color:#fff;padding:5px;">Add to cart</a>').appendTo('#cboxContent'); 
+        $('<a href="/#/add_to_cart/'+product_id+'" id="add_to_cart" class="'+product_id+'" style="position:absolute;'
+        +'top:0;right:0px;cursor:pointer; background:#8cb3a0; color:#fff;padding:5px;">Add to cart</a>').appendTo('#cboxContent'); 
     }); 
     $('.product_thumb').live('click', function(){
         var product_id = $(this).parent().attr('id').replace('product_', '');
         $(this).siblings('.product_images').find('a').colorbox({open: true});
-        $('<a href="/#/add_to_cart/'+product_id+'" id="add_to_cart" class="'+product_id+'" style="position:absolute; top:0;right:0px;cursor:pointer; background:#8cb3a0; color:#fff;padding:5px;">Add to cart</a>').appendTo('#cboxContent'); 
+        $('<a href="/#/add_to_cart/'+product_id+'" id="add_to_cart" class="'+product_id+'" style="position:absolute;'
+         +'top:0;right:0px;cursor:pointer; background:#8cb3a0; color:#fff;padding:5px;">Add to cart</a>').appendTo('#cboxContent'); 
     });
      $('.product_thumb_checkout').live('click', function(){
          $("#add_to_cart").remove();
@@ -58,8 +57,6 @@ $(function() {
              cart_items.splice(idx, 1);
              store.set('cart_items', cart_items.join(','));
            }else if(cart_items.length == 1 && (cart_items[0] == product_id || cart_items[0] == product_id)){
-            //   store.set('cart_items', '');
-               //store.clearAll();
                store.clear('cart_items');
            } 
             $.notifyBar({
@@ -79,24 +76,31 @@ $(function() {
             $.ajax({
                 url: '/products/add_to_cart/' + product_id,
                 success: function(response){
-                    //console.log(response);
-                    $.colorbox.close();
-                    storeCartItem(product_id);
-                    getCartItemsTotal();
-                    context.redirect('#/'+current_category+'/'+current_page);
+                    if(response.status == "success"){
+                        $.colorbox.close();
+                        storeCartItem(product_id);
+                        getCartItemsTotal();
+                        context.redirect('#/'+current_category+'/'+current_page);
                         $.notifyBar({
                           cls: "success",
                           html: "Item added to cart.",
                           delay: 1000,
                           animationSpeed: "normal"
                         });
+                    }else{
+                        $.notifyBar({
+                          cls: "error",
+                          html: response.message,
+                          delay: 1000,
+                          animationSpeed: "normal"
+                        });
+                    }
                 }
             });
         });
     
     
         this.get('#/:category_name/:page', function(context){
-            //$("#scrollbar_area .inner").show();
             store = new Sammy.Store.Cookie({name: 'skeenglass_cart', type: 'cookie'});
             $("#products_grid_container").empty();
             displayLoader();
@@ -193,7 +197,7 @@ function checkout(){
                 $(".subtotal_price").html(price_total + "$");
                 
             }
-        }); 
+        });
     }else{
         $("#products_grid_container").html("<p>No items in cart</p>");
     }
