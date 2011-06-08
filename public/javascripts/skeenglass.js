@@ -172,18 +172,22 @@ function checkout(){
     cart_item_ids = getCartItems().join(',');
     if(cart_item_ids.length > 0){
          $.get('/javascripts/templates/productImagesTemplate.htm', function(template) {
+         	console.log(template);
             $.template("productImagesTemplate",template);    
          });
-         $.get('/javascripts/templates/productCartTemplate.html', function(template) { 
+         $.get('/javascripts/templates/productCartTemplate.html', function(template) {
+         	console.log(template); 
           cart_template = template;
          });
           $.get('/javascripts/templates/productTemplateTable.html', function(template) {
+          	console.log(template);
           $.template("productTemplateTable",template);  
          });
          
         $.ajax({
             url: "/products/cart_items/" + cart_item_ids,
             success: function(response){
+            	console.log(response);
                 item_count = 0;
                 price_total = 0;
                 $(response).each(function(){

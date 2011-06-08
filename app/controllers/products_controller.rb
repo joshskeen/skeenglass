@@ -2,8 +2,8 @@ require 'google4r/checkout'
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.xml
-  before_filter :authenticate_user!, :except => [:add_to_cart]
-  configuration = { :merchant_id => '119277627551780', :merchant_key => '4Jwx3ZkSmI_h_rpqePpQYQ', :use_sandbox => true }
+  before_filter :authenticate_user!, :except => [:add_to_cart, :cart_items, :checkout]
+  @@configuration = { :merchant_id => '119277627551780', :merchant_key => '4Jwx3ZkSmI_h_rpqePpQYQ', :use_sandbox => true }
    
   def index
     @products = Product.all
@@ -113,8 +113,7 @@ class ProductsController < ApplicationController
   
   def checkout
     @products = Product.find(params[:ids].split(','))
-       
-         @frontend = Google4R::Checkout::Frontend.new(configuration)
+         @frontend = Google4R::Checkout::Frontend.new(@@configuration)
          checkout_command = @frontend.create_checkout_command
          @products.each do |product|
            checkout_command.shopping_cart.create_item do|item|
@@ -136,13 +135,9 @@ class ProductsController < ApplicationController
       
     response = checkout_command.send_to_google_checkout
     logger.debug(response)
+    logger.debug(response.serial_number)
     redirect_to response.redirect_url
-    
-        
- #        checkout_command.shopping_cart.create_item do |item in products|
-##           
- #        end
-  end
+    end
   
   
   
