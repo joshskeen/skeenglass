@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110607201940) do
+ActiveRecord::Schema.define(:version => 20110608010807) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20110607201940) do
   create_table "categories_products", :id => false, :force => true do |t|
     t.integer "category_id", :null => false
     t.integer "product_id",  :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "serial_number"
+    t.boolean  "completed",     :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "product_images", :force => true do |t|
@@ -45,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20110607201940) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "sold",               :default => false
+    t.integer  "order_id"
   end
 
   create_table "users", :force => true do |t|

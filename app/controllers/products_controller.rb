@@ -135,7 +135,11 @@ class ProductsController < ApplicationController
       
     response = checkout_command.send_to_google_checkout
     logger.debug(response)
+    #logger.debug(response.message)
     logger.debug(response.serial_number)
+    @order = Order.create(:serial_number => response.serial_number)
+    @order.products = @products
+    @order.save
     redirect_to response.redirect_url
     end
   
