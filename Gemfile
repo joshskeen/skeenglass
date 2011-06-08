@@ -10,6 +10,7 @@ gem "google4r-checkout", "1.1.beta5"
 
 gem 'sqlite3'
 gem "will_paginate", "~> 3.0.pre2"
+gem 'heroku'
 
 # Use unicorn as the web server
 # gem 'unicorn'
